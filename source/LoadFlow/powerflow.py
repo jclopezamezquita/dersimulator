@@ -7,7 +7,7 @@ import sys
 
 
 config = json.load(open("config.json"))
-PATH = config["PATH"]
+PATH = config['DSS']["PATH"]
 
 
 def run(feeder):
@@ -32,4 +32,5 @@ def run(feeder):
     else:
         print(f"Solution converged at feeder {feeder}!", flush=True)
 
+    a = 1
     return Circuit
