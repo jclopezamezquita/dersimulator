@@ -1,10 +1,12 @@
 {
-    "PATH" : "/home/zenichi/Code/dersimulator/examples",
-    "feeders" : ["4Bus-DY-Bal"],
-    "DERs file name" : "None",
-    "DERs operation file name" : "None",
-    "Loads file name" : "None",
-    "Curves file name" : "None",
-    "PV file name" : "None"
+    "DSS": {
 
+        "PATH" : "/home/zenichi/Code/dersimulator/examples",
+        "feeders" : ["4Bus-DY-Bal"],
+        "DERs file name" : "None",
+        "DERs operation file name" : "None",
+        "Loads file name" : "None",
+        "Curves file name" : "None",
+        "PV file name" : "None"
+    }
 }
