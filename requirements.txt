@@ -1,0 +1,11 @@
+astroid==2.6.5
+cffi==1.14.6
+dss-python==0.10.7.post1
+isort==5.9.2
+lazy-object-proxy==1.6.0
+mccabe==0.6.1
+numpy==1.21.1
+pycparser==2.20
+pylint==2.9.5
+toml==0.10.2
+wrapt==1.12.1
