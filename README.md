@@ -8,4 +8,4 @@ The DERs that can be simulated in the program are:
 - Photovoltaic Systems (PS);
 - Battery Energy Store System (BESS);
 
-The load flow is run through the [dss-python] library (https://pypi.org/project/dss-python/).
+The load flow is run through the [dss-python](https://pypi.org/project/dss-python/) library .
