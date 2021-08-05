@@ -12,7 +12,7 @@ The load flow is run through the [dss-python](https://pypi.org/project/dss-pytho
 
 ## Architecture
 
-![](docs/architecture.png)
+![alt-text](doc/Architecture.png)
 
 ## Observations: 
 
