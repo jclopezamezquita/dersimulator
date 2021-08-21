@@ -1,5 +1,6 @@
 from dss import DSS
 
+
 def bus(Circuit):
     data = dict()
     for bar in Circuit.AllBusNames:
@@ -21,6 +22,7 @@ def bus(Circuit):
         )
     return data
 
+
 def elements(Circuit):
     data = dict()
     for element in Circuit.AllElementNames:
@@ -37,9 +39,8 @@ def elements(Circuit):
                     "QA": [],
                     "QB": [],
                     "QC": [],
-                    "LossA": [],
-                    "LossB": [],
-                    "LossC": [],
+                    "kWLosses": [],
+                    "kVArLosses": [],
                 }
             }
         )
