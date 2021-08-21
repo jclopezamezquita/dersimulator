@@ -1,33 +1,49 @@
 from source.Processing import measurements
 from source.Processing import structures
 from source.LoadFlow import powerflow
+from source.Processing import dictionaries
+
+################################################################################
+import shutil
 import json
 import os
 
 
+############################# Initializing Results filesystem ##################
 
-config = json.load(open("config.json"))
-feeder = config['DSS']["feeders"][0]
+if not os.path.exists("Results/"):
+    os.makedirs("Results/")
 
-Circuit = powerflow.run(feeder)
 
-# Define structures
-bus = structures.bus(Circuit)
-elements = structures.elements(Circuit)
+############################## Get circuit elements ############################
 
-# Get measures
-bus = measurements.busdata(Circuit, bus, Circuit.AllBusNames)
-elements = measurements.elementsdata(Circuit, elements, Circuit.AllElementNames)
+(FEEDERs, LOADs, PVs, DERs) = dictionaries.get_nodal_elements()
 
-if not os.path.exists('Estudos/'):
-    os.makedirs('Estudos/')
+(PVs, DERs) = dictionaries.get_ders_elements(PVs, DERs)
 
-# Save files
-with open('Estudos/bus.json', 'w') as f:
-    json.dump(bus,f, indent=2)
+(LOADs) = dictionaries.get_nodal_loads(LOADs)
 
-with open('Estudos/elements.json', 'w') as f:
-    json.dump(elements, f, indent=2)
 
-a = 1
+############################## Power flow block ################################
+for feeder in FEEDERs:
+    Circuit = powerflow.run(feeder, LOADs, PVs, DERs)
 
+    # Define structures
+    bus = structures.bus(Circuit)
+    elements = structures.elements(Circuit)
+
+for feeder in FEEDERs:
+    ############################## Get measures ################################
+    bus = measurements.json_busdata(Circuit, bus, Circuit.AllBusNames)
+    elements = measurements.json_elementsdata(Circuit, elements, Circuit.AllElementNames)
+
+    print("Breakpoint")
+
+    # Save files
+    with open(f"Results/{feeder}_bus.json", "w") as f:
+        json.dump(bus, f, indent=2)
+
+    with open(f"Results/{feeder}_elements.json", "w") as f:
+        json.dump(elements, f, indent=2)
+
+    print("Breakpoint")
