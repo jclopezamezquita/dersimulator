@@ -1,0 +1,20 @@
+{
+    "DER01_PV": {
+        "name" : "PV_teste",
+        "Bus1" : "n4",
+        "feeder" : "4Bus",
+        "type" : "PV",
+        "phases" : 3,
+        "kV" : 0.22,
+        "kW_CS_max" : 0,
+        "kW_PV_max" : 10,
+        "kW_BESS_max" : 0,
+        "kWh_BESS_max" : 0,
+        "pf" : 1,
+        "conn" : "delta",
+        "DailyCurve" : "bge_pv",
+        "inteligence" : "supervision",
+        "LoadNameOpenDSS" : "geracao_pv_gmu",
+        "CS_outputs" : 0
+    }
+}
