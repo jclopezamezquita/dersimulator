@@ -8,7 +8,6 @@ import os
 
 def get_power(Circuit, bar):
     # PA, QA, PB, QB, PC, QC
-
     Powers = [0, 0, 0, 0, 0, 0]
     if Circuit.ActiveBus.LoadList[0]:
         for load in Circuit.ActiveBus.LoadList:

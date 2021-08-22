@@ -20,6 +20,19 @@ def save_csvfiles(feeder, bus, elements):
     elements.to_csv(f"Results/{feeder}_elements.csv")
     return
 
+def get_resultlists(config, feeder, Circuit):
+    if config['Results']['Bus'] == 'All':
+        bus_list = Circuit.AllBusNames
+    else:
+        RESULT = json.load(open(config['Results']['Bus']))
+        bus_list = RESULT[feeder]['Bus']
+    if config['Results']['Elements'] == 'All':
+        elements_list = Circuit.AllElementNames
+    else:
+        RESULT = json.load(open(config['Results']['Elements']))
+        elements_list = RESULT[feeder]['Elements']
+    return bus_list, elements_list
+
 
 def snapshot(config, feeder, LOADs, PVs, DERs):
     print("Running snapshot powerflow")
@@ -30,15 +43,17 @@ def snapshot(config, feeder, LOADs, PVs, DERs):
         bus = structures.json_bus(Circuit)
         elements = structures.json_elements(Circuit)
         ######################## Get measures ##################################
-        bus = measurements.json_busdata(Circuit, bus, Circuit.AllBusNames)
+        (bus_list, elements_list) = get_resultlists(config, feeder, Circuit)
+        bus = measurements.json_busdata(Circuit, bus, bus_list)
         elements = measurements.json_elementsdata(
-            Circuit, elements, Circuit.AllElementNames
+            Circuit, elements, elements_list
         )
         save_jsonfiles(feeder, bus, elements)
 
     elif config["Simulation"]["Output format"] == "dataframe":
-        bus = measurements.dataframe_busdata(Circuit, Circuit.AllBusNames)
-        elements = measurements.dataframe_elementsdata(Circuit, Circuit.AllElementNames)
+        (bus_list, elements_list) = get_resultlists(config, feeder, Circuit)
+        bus = measurements.dataframe_busdata(Circuit, bus_list)
+        elements = measurements.dataframe_elementsdata(Circuit, elements_list)
         save_csvfiles(feeder, bus, elements)
         a = 1
     return

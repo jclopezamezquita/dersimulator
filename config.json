@@ -17,5 +17,9 @@
     },
     "DERs":{
         "Scenario" : "None"
+    },
+    "Results":{
+        "Bus": "All",
+        "Elements": "All"
     }
 }
