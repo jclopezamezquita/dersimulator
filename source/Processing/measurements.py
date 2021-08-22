@@ -1,5 +1,6 @@
 from math import sqrt
 from dss import DSS
+import pandas as pd
 import numpy as np
 import math
 import os
@@ -16,6 +17,7 @@ def get_power(Circuit, bar):
             Powers = np.add(Powers, CurrentPowers[0:6])
 
     return Powers
+
 
 def json_busdata(Circuit, bus, buslist):
     for bar in buslist:
@@ -50,7 +52,69 @@ def json_elementsdata(Circuit, elements, elementslist):
         elements[element]["QB"].append(Powers[3])
         elements[element]["QC"].append(Powers[5])
         Losses = Circuit.ActiveCktElement.Losses
-        elements[element]['kWLosses'].append(Losses[0]/1000)
-        elements[element]['kVArLosses'].append(Losses[1]/1000)
+        elements[element]["kWLosses"].append(Losses[0] / 1000)
+        elements[element]["kVArLosses"].append(Losses[1] / 1000)
 
     return elements
+
+
+def dataframe_busdata(Circuit, buslist):
+    columns = ["node", "VA", "VB", "VC", "PA", "PB", "PC", "QA", "QB", "QC"]
+    df = pd.DataFrame(columns=columns)
+    for bar in buslist:
+        Circuit.SetActiveBus(bar)
+        Voltages = Circuit.ActiveBus.puVoltages
+        Powers = get_power(Circuit, bar)
+        data = {
+            "node": bar,
+            "VA": sqrt(Voltages[0] ** 2 + Voltages[1] ** 2),
+            "VB": sqrt(Voltages[2] ** 2 + Voltages[3] ** 2),
+            "VC": sqrt(Voltages[4] ** 2 + Voltages[5] ** 2),
+            "PA": Powers[0],
+            "PB": Powers[2],
+            "PC": Powers[4],
+            "QA": Powers[1],
+            "QB": Powers[3],
+            "QC": Powers[5],
+        }
+        df = df.append(data, ignore_index=True)
+    return df
+
+
+def dataframe_elementsdata(Circuit, elementslist):
+    columns = [
+        "element",
+        "IA",
+        "IB",
+        "IC",
+        "PA",
+        "PB",
+        "PC",
+        "QA",
+        "QB",
+        "QC",
+        "kWLosses",
+        "kVArLosses",
+    ]
+    df = pd.DataFrame(columns=columns)
+    for element in elementslist:
+        Circuit.SetActiveElement(element)
+        Currents = Circuit.ActiveElement.Currents
+        Powers = Circuit.ActiveElement.Powers
+        Losses = Circuit.ActiveCktElement.Losses
+        data = {
+            "element": element,
+            "IA": sqrt(Currents[0] ** 2 + Currents[1] ** 2),
+            "IB": sqrt(Currents[2] ** 2 + Currents[3] ** 2),
+            "IC": sqrt(Currents[4] ** 2 + Currents[5] ** 2),
+            "PA": Powers[0],
+            "PB": Powers[2],
+            "PC": Powers[4],
+            "QA": Powers[1],
+            "QB": Powers[3],
+            "QC": Powers[5],
+            "kWLosses": Losses[0] / 1000,
+            "kVArLosses": Losses[1] / 1000,
+        }
+        df = df.append(data, ignore_index=True)
+    return df

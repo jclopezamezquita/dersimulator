@@ -10,9 +10,10 @@ config = json.load(open("config.json"))
 PATH = config["DSS"]["PATH"]
 
 LIST = {
-    'Load': ['Bus1', 'Phases', 'kV', 'kW', 'pf', 'vminpu'],
-    'PVs': ['Bus1', 'Phases', 'kV', 'kW', 'pf', 'Conn', 'Model', 'Enabled']
+    "Load": ["Bus1", "Phases", "kV", "kW", "pf", "vminpu"],
+    "PVs": ["Bus1", "Phases", "kV", "kW", "pf", "Conn", "Model", "Enabled"],
 }
+
 
 def run(feeder, LOADs, PVs, DERs):
     # Start openDSS
@@ -28,18 +29,18 @@ def run(feeder, LOADs, PVs, DERs):
     Text.Command = f"Redirect {PATH}/{feeder}/Master.dss"
 
     for load in LOADs[feeder]:
-        newload = f'New load.{load}'
+        newload = f"New load.{load}"
         for key in LOADs[feeder][load]:
-            if key in LIST['Load']:
+            if key in LIST["Load"]:
                 # Add condition for kW
-                newload = newload + f' {key}={LOADs[feeder][load][key]}'
+                newload = newload + f" {key}={LOADs[feeder][load][key]}"
         Text.Command = newload
 
     for pv in PVs[feeder]:
-        newpv = f'New load.{pv}'
+        newpv = f"New load.{pv}"
         for key in PVs[feeder][pv]:
-            if key in LIST['PVs']:
-                newpv = newpv + f' {key}={PVs[feeder][pv][key]}'
+            if key in LIST["PVs"]:
+                newpv = newpv + f" {key}={PVs[feeder][pv][key]}"
         Text.Command = newpv
 
     for der in DERs[feeder]:

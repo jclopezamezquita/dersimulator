@@ -4,11 +4,16 @@
         "PATH" : "/home/zenichi/Code/dersimulator/examples",
         "feeders" : ["4Bus"],
         "Loads file name" : "Loads.json",
-        "PV file name" : "None"
+        "PV file name" : "None",
+        "Load shape": "None",
+        "PV shape": "None"
     },
     "Simulation": {
         "Type" : "snapshot",
-        "Output format": "json"
+        "Output format": "dataframe",
+        "Datetime": "2021-08-01 00:00:00",
+        "Time step": 15,
+        "Samples": 96
     },
     "DERs":{
         "Scenario" : "None"

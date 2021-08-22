@@ -1,49 +1,56 @@
-from source.Processing import measurements
-from source.Processing import structures
-from source.LoadFlow import powerflow
 from source.Processing import dictionaries
-
 ################################################################################
+from source import simulation
+from datetime import datetime
+from dateutil import parser
 import shutil
 import json
+import sys
 import os
 
 
 ############################# Initializing Results filesystem ##################
-
 if not os.path.exists("Results/"):
     os.makedirs("Results/")
 
-
 ############################## Get circuit elements ############################
-
 (FEEDERs, LOADs, PVs, DERs) = dictionaries.get_nodal_elements()
-
 (PVs, DERs) = dictionaries.get_ders_elements(PVs, DERs)
-
 (LOADs) = dictionaries.get_nodal_loads(LOADs)
 
+############################## Get simulation atributes ########################
+config = json.load(open('config.json'))
 
-############################## Power flow block ################################
-for feeder in FEEDERs:
-    Circuit = powerflow.run(feeder, LOADs, PVs, DERs)
+############################## Snapshott powerflow #############################
+if config['Simulation']['Type'] == 'snapshot':
+    print('Snapshot simulation')
+    ########################## run snapshot powerflow ##########################
+    for feeder in FEEDERs:
+        simulation.snapshot(config, feeder, LOADs, PVs, DERs)
 
-    # Define structures
-    bus = structures.bus(Circuit)
-    elements = structures.elements(Circuit)
 
-for feeder in FEEDERs:
-    ############################## Get measures ################################
-    bus = measurements.json_busdata(Circuit, bus, Circuit.AllBusNames)
-    elements = measurements.json_elementsdata(Circuit, elements, Circuit.AllElementNames)
+############################## Time-series powerflow ###########################
+elif config['Simulation']['Type'] == 'time-series':
+    if config['Simulation']['Output format'] != 'json':
+        print(f'Only json format is supported for time-series simulation')
+        sys.exit(0)
+    if config['Simulation']['Datetime'] == 'Now':
+        date = datetime.now()
+    try:
+        date = parser.parse(config['Simulation']['Datetime'])
+    except:
+        print('Date out of iso format')
+        sys.exit(0)
+    
 
-    print("Breakpoint")
+print('End of simulation')
+sys.exit(0)
 
-    # Save files
-    with open(f"Results/{feeder}_bus.json", "w") as f:
-        json.dump(bus, f, indent=2)
 
-    with open(f"Results/{feeder}_elements.json", "w") as f:
-        json.dump(elements, f, indent=2)
 
-    print("Breakpoint")
+
+
+
+
+
+    
