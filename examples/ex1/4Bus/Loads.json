@@ -5,6 +5,7 @@
 		"kV" : 4.16,
 		"kW" : 5400,
 		"pf" : 0.9,
-		"vminpu" : 0.75
+		"vminpu" : 0.75,
+		"DailyCurve" : "shape_meter_load1"
 	}
 }

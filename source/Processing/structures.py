@@ -2,10 +2,9 @@ from dss import DSS
 import pandas as pd
 
 
-def json_bus(Circuit, buslist):
-    data = dict()
+def json_bus(buslist):
+    data = {"time-step": []}
     for bar in buslist:
-        Circuit.ActiveBus(bar)
         data.update(
             {
                 bar: {
@@ -24,10 +23,9 @@ def json_bus(Circuit, buslist):
     return data
 
 
-def json_elements(Circuit, elementslist):
-    data = dict()
+def json_elements(elementslist):
+    data = {"time-step": []}
     for element in elementslist:
-        Circuit.SetActiveElement(element)
         data.update(
             {
                 element: {

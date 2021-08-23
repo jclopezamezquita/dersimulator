@@ -31,6 +31,7 @@ def get_nodal_loads(LOADs):
             DEVICES = json.load(open(f"{path}/{file}"))
             for device in DEVICES:
                 LOADs[feeder].update({device: DEVICES[device]})
+                LOADs[feeder][device].update({"mul": 1})
     return LOADs
 
 
@@ -47,13 +48,16 @@ def get_ders_elements(PVs, DERs):
                 if DEVICES[device]["feeder"] == feeder:
                     if DEVICES[device]["type"] == "PV":
                         PVs[feeder].update({device: DEVICES[device]})
+                        PVs[feeder][device].update({"mul": 1})
                     else:
                         DERs[feeder].update({device: DEVICES[device]})
+                        DERs[feeder][device].update({"mul": 1})
         if config["DSS"]["PV file name"] != "None":
             file = config["DSS"]["PV file name"]
             path = f'{config["DSS"]["PATH"]}/{feeder}'
             DEVICES = json.load(open(f"{path}/{file}"))
             for device in DEVICES:
                 PVs[feeder].update({device: DEVICES[device]})
+                PVs[feeder][device].update({"mul": 1})
 
     return PVs, DERs

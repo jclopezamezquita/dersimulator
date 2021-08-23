@@ -32,15 +32,22 @@ def run(feeder, LOADs, PVs, DERs):
         newload = f"New load.{load}"
         for key in LOADs[feeder][load]:
             if key in LIST["Load"]:
-                # Add condition for kW
-                newload = newload + f" {key}={LOADs[feeder][load][key]}"
+                if key == "kW":
+                    mul = LOADs[feeder][load]["mul"]
+                    newload = newload + f" {key}={LOADs[feeder][load][key]*mul}"
+                else:
+                    newload = newload + f" {key}={LOADs[feeder][load][key]}"
         Text.Command = newload
 
     for pv in PVs[feeder]:
         newpv = f"New load.{pv}"
         for key in PVs[feeder][pv]:
             if key in LIST["PVs"]:
-                newpv = newpv + f" {key}={PVs[feeder][pv][key]}"
+                if key == "kW":
+                    mul = LOADs[feeder][load]["mul"]
+                    newpv = newpv + f" {key}={PVs[feeder][pv][key]*mul}"
+                else:
+                    newpv = newpv + f" {key}={PVs[feeder][pv][key]}"
         Text.Command = newpv
 
     for der in DERs[feeder]:
