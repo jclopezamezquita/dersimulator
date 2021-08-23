@@ -1,6 +1,6 @@
 {
     "4Bus":{
         "Bus" : ["n2", "n3", "n4"],
-        "Elements": ["line.line1"]
+        "Elements": ["Line.line1"]
     }    
 }

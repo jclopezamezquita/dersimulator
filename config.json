@@ -1,16 +1,16 @@
 {
     "DSS": {
 
-        "PATH" : "/home/zenichi/Code/dersimulator/examples",
+        "PATH" : "/home/zenichi/Code/dersimulator/examples/ex1",
         "feeders" : ["4Bus"],
         "Loads file name" : "Loads.json",
         "PV file name" : "None",
-        "Load shape": "None",
-        "PV shape": "None"
+        "Load curve": "None",
+        "PV curve": "None"
     },
     "Simulation": {
         "Type" : "snapshot",
-        "Output format": "dataframe",
+        "Output format": "json",
         "Datetime": "2021-08-01 00:00:00",
         "Time step": 15,
         "Samples": 96
@@ -19,7 +19,7 @@
         "Scenario" : "None"
     },
     "Results":{
-        "Bus": "All",
-        "Elements": "All"
+        "Bus": "/home/zenichi/Code/dersimulator/examples/ex1/data.json",
+        "Elements": "/home/zenichi/Code/dersimulator/examples/ex1/data.json"
     }
 }

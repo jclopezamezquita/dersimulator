@@ -2,9 +2,9 @@ from dss import DSS
 import pandas as pd
 
 
-def json_bus(Circuit):
+def json_bus(Circuit, buslist):
     data = dict()
-    for bar in Circuit.AllBusNames:
+    for bar in buslist:
         Circuit.ActiveBus(bar)
         data.update(
             {
@@ -24,9 +24,9 @@ def json_bus(Circuit):
     return data
 
 
-def json_elements(Circuit):
+def json_elements(Circuit, elementslist):
     data = dict()
-    for element in Circuit.AllElementNames:
+    for element in elementslist:
         Circuit.SetActiveElement(element)
         data.update(
             {
