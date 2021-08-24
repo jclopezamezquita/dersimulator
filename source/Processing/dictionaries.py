@@ -52,8 +52,8 @@ def get_ders_elements(PVs, DERs):
                     else:
                         DERs[feeder].update({device: DEVICES[device]})
                         DERs[feeder][device].update({"mul": 1})
-        if config["DSS"]["PV file name"] != "None":
-            file = config["DSS"]["PV file name"]
+        if config["DSS"]["PVs file name"] != "None":
+            file = config["DSS"]["PVs file name"]
             path = f'{config["DSS"]["PATH"]}/{feeder}'
             DEVICES = json.load(open(f"{path}/{file}"))
             for device in DEVICES:

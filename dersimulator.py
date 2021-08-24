@@ -46,9 +46,9 @@ elif config["Simulation"]["Type"] == "time-series":
             if counter == 0:
                 (bus, elements) = (dict(), dict())
             if config['DSS']['PV curves'] != 'None':
-                PVCURVES = json.load(open(config['DSS']['PV curves']))
+                PVCURVES = json.load(open(config['DSS']['PVs curves']))
             if config['DSS']['Load curves'] != 'None':
-                LOADCURVES = json.load(open(config['DSS']['Load curves']))
+                LOADCURVES = json.load(open(config['DSS']['Loads curves']))
             
             for pv in PVs[feeder]:
                 PVs[feeder][pv]['mul'] = PVCURVES[feeder][PVs[feeder][pv]['DailyCurve']][counter]

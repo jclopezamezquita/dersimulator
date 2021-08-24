@@ -4,9 +4,9 @@
         "PATH" : "/PATHTO/dersimulator/examples/ex1",
         "feeders" : ["4Bus"],
         "Loads file name" : "Loads.json",
-        "PV file name" : "None",
-        "Load curves": "/PATHTO/dersimulator/examples/ex1/load_curves.json",
-        "PV curves": "None"
+        "PVs file name" : "None",
+        "Loads curves": "/PATHTO/dersimulator/examples/ex1/load_curves.json",
+        "PVs curves": "None"
     },
     "Simulation": {
         "Type" : "time-series",
