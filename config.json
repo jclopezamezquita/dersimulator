@@ -16,7 +16,8 @@
         "Samples": 96
     },
     "DERs":{
-        "Scenario" : "None"
+        "Scenario" : "None",
+        "Operation": "None"
     },
     "Results":{
         "Bus": "/PATHTO/dersimulator/examples/ex1/data.json",
