@@ -20,7 +20,35 @@ The load flow is run through the [dss-python](https://pypi.org/project/dss-pytho
 
 ## Installation
 
-_In Construction_
+_A docker version will be available soon._
+
+- Clone the repository:
+```
+$ git clone https://gitlab.com/smart-grids-tools/dersimulator.git 
+$ cd dersimulator
+```
+
+- Make sure Python 3.9 is installed on your computer;
+
+- It is recommended to create a virtual environment:
+```
+$ python -m venv venv
+```
+
+- Activate the virtual environment and install the requirements:
+
+```
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+```
+
+- Modify the `config.json` file. See the examples for more information.
+
+- Run the simulator:
+
+```
+$ python dersimulator.py
+```
 
 ## Simulation Guide
 
