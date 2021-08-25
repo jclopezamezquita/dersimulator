@@ -1,0 +1,1 @@
+Replace config.json file in the root directory

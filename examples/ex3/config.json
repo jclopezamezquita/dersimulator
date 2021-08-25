@@ -1,0 +1,26 @@
+{
+    "DSS": {
+
+        "PATH" : "examples/ex3",
+        "feeders" : ["4Bus"],
+        "Loads file name" : "Loads.json",
+        "PVs file name" : "PV.json",
+        "Loads curves": "examples/ex3/load_curves.json",
+        "PVs curves": "examples/ex3/pv_curves.json"
+    },
+    "Simulation": {
+        "Type" : "time-series",
+        "Output format": "json",
+        "Datetime": "2021-08-01 00:00:00",
+        "Time step": 15,
+        "Samples": 96
+    },
+    "DERs":{
+        "Scenario" : "None",
+        "Operation": "None"
+    },
+    "Results":{
+        "Bus": "examples/ex3/data.json",
+        "Elements": "examples/ex3/data.json"
+    }
+}

@@ -1,11 +1,11 @@
 {
     "DSS": {
 
-        "PATH" : "examples/ex4",
+        "PATH" : "examples/ex2",
         "feeders" : ["4Bus"],
         "Loads file name" : "Loads.json",
         "PVs file name" : "None",
-        "Loads curves": "examples/ex4/load_curves.json",
+        "Loads curves": "examples/ex2/load_curves.json",
         "PVs curves": "None"
     },
     "Simulation": {
@@ -16,11 +16,11 @@
         "Samples": 96
     },
     "DERs":{
-        "Scenario" : "examples/ex4/scenario.json",
-        "Operation": "examples/ex4/DERs_operation.json"
+        "Scenario" : "None",
+        "Operation": "None"
     },
     "Results":{
-        "Bus": "examples/ex4/data.json",
-        "Elements": "examples/ex4/data.json"
+        "Bus": "examples/ex2/data.json",
+        "Elements": "examples/ex2/data.json"
     }
 }

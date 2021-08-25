@@ -1,0 +1,6 @@
+{
+    "4Bus":{
+        "Bus" : ["sourcebus","n2", "n3", "n4"],
+        "Elements": ["Vsource.source", "Line.line1", "Transformer.t1", "Line.line2", "Load.load1"]
+    }    
+}

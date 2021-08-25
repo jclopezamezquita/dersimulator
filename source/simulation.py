@@ -22,7 +22,7 @@ def save_csvfiles(feeder, bus, elements):
 
 
 def get_resultlists(config, feeder, Circuit):
-    if config["Results"]["Bus"] == ["All", "all"]:
+    if config["Results"]["Bus"] in ["All", "all"]:
         bus_list = Circuit.AllBusNames
     else:
         RESULT = json.load(open(config["Results"]["Bus"]))

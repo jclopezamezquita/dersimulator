@@ -3,11 +3,11 @@
 		"Bus1" : "n4",
 		"phases" : 3,
 		"kV" : 4.16,
-		"kW" : -500.0,
+		"kW" : -50.0,
 		"pf" : 1,
 		"Conn" : "delta",
 		"Model" : 1,
 		"Enabled": "yes",
-		"DailyCurve" : "bge_pv"
+		"DailyCurve" : "pv1"
 	}
 }

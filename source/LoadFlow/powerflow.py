@@ -51,24 +51,24 @@ def run(feeder, LOADs, PVs, DERs):
         Text.Command = newpv
 
     for der in DERs[feeder]:
-        newcs = f'new load.{der}_CS'
-        newpv = f'new load.{der}_PV'
-        newbess = f'new load.{der}_BESS'
+        newcs = f"new load.{der}_CS"
+        newpv = f"new load.{der}_PV"
+        newbess = f"new load.{der}_BESS"
         for key in DERs[feeder][der]:
             ############################## General keys ########################
-            if key in LIST['Load']:
+            if key in LIST["Load"]:
                 newcs = newcs + f" {key}={DERs[feeder][der][key]}"
-            if key in LIST['PVs']:
+            if key in LIST["PVs"]:
                 newpv = newpv + f" {key}={DERs[feeder][der][key]}"
-            ############################## specific keys #######################            
-            if key == 'kW_CS_max':
+            ############################## specific keys #######################
+            if key == "kW_CS_max":
                 mul = DERs[feeder][der]["CSmul"]
                 newcs = newcs + f" kW={DERs[feeder][der][key]*mul}"
-            if key == 'kW_PV_max':
+            if key == "kW_PV_max":
                 mul = DERs[feeder][der]["PVmul"]
                 newpv = newpv + f" kW={DERs[feeder][der][key]*mul}"
 
-        ############################## create dss elements #####################            
+        ############################## create dss elements #####################
         if "CS" in DERs[feeder][der]["type"]:
             Text.Command = newcs
 

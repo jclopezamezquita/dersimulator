@@ -1,0 +1,26 @@
+{
+    "DSS": {
+
+        "PATH" : "examples/ex1",
+        "feeders" : ["4Bus"],
+        "Loads file name" : "Loads.json",
+        "PVs file name" : "None",
+        "Loads curves": "None",
+        "PVs curves": "None"
+    },
+    "Simulation": {
+        "Type" : "snapshot",
+        "Output format": "dataframe",
+        "Datetime": "2021-08-01 00:00:00",
+        "Time step": 0,
+        "Samples": 1
+    },
+    "DERs":{
+        "Scenario" : "None",
+        "Operation": "None"
+    },
+    "Results":{
+        "Bus": "all",
+        "Elements": "all"
+    }
+}

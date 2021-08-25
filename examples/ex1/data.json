@@ -1,6 +1,0 @@
-{
-    "4Bus":{
-        "Bus" : ["n2", "n3", "n4"],
-        "Elements": ["Line.line1"]
-    }    
-}
