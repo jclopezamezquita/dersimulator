@@ -20,6 +20,10 @@ if not os.path.exists("Results/"):
 ############################## Get simulation atributes ########################
 config = json.load(open("config.json"))
 
+############################## Get DERs operation ##############################
+if config["DERs"]["Operation"] != "None":
+    DERs_operation = json.load(open(config["DERs"]["Operation"]))
+
 ############################## Snapshott powerflow #############################
 if config["Simulation"]["Type"] == "snapshot":
     print("Snapshot simulation")
@@ -45,16 +49,25 @@ elif config["Simulation"]["Type"] == "time-series":
         for counter in range(0, config["Simulation"]["Samples"]):
             if counter == 0:
                 (bus, elements) = (dict(), dict())
-            if config['DSS']['PV curves'] != 'None':
-                PVCURVES = json.load(open(config['DSS']['PVs curves']))
-            if config['DSS']['Load curves'] != 'None':
-                LOADCURVES = json.load(open(config['DSS']['Loads curves']))
-            
-            for pv in PVs[feeder]:
-                PVs[feeder][pv]['mul'] = PVCURVES[feeder][PVs[feeder][pv]['DailyCurve']][counter]
-            for load in LOADs[feeder]:
-                LOADs[feeder][load]['mul'] = LOADCURVES[feeder][LOADs[feeder][load]['DailyCurve']][counter]
+            if config["DSS"]["PVs curves"] != "None":
+                PVCURVES = json.load(open(config["DSS"]["PVs curves"]))
+            if config["DSS"]["Loads curves"] != "None":
+                LOADCURVES = json.load(open(config["DSS"]["Loads curves"]))
 
+            for pv in PVs[feeder]:
+                PVs[feeder][pv]["mul"] = PVCURVES[feeder][
+                    PVs[feeder][pv]["DailyCurve"]
+                ][counter]
+            for load in LOADs[feeder]:
+                LOADs[feeder][load]["mul"] = LOADCURVES[feeder][
+                    LOADs[feeder][load]["DailyCurve"]
+                ][counter]
+            for der in DERs[feeder]:
+                DERs[feeder][der]["CSmul"] = (
+                    DERs_operation[der]["enabled"][counter]
+                    * DERs_operation[der]["operation"][counter]
+                    * DERs_operation[der]["smart_charging"][counter]
+                )
             (bus, elements) = simulation.time_series(
                 feeder, bus, elements, counter, LOADs, PVs, DERs
             )

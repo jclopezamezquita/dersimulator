@@ -51,20 +51,34 @@ def run(feeder, LOADs, PVs, DERs):
         Text.Command = newpv
 
     for der in DERs[feeder]:
+        newcs = f'new load.{der}_CS'
+        newpv = f'new load.{der}_PV'
+        newbess = f'new load.{der}_BESS'
+        for key in DERs[feeder][der]:
+            ############################## General keys ########################
+            if key in LIST['Load']:
+                newcs = newcs + f" {key}={DERs[feeder][der][key]}"
+            if key in LIST['PVs']:
+                newpv = newpv + f" {key}={DERs[feeder][der][key]}"
+            ############################## specific keys #######################            
+            if key == 'kW_CS_max':
+                mul = DERs[feeder][der]["CSmul"]
+                newcs = newcs + f" kW={DERs[feeder][der][key]*mul}"
+            if key == 'kW_PV_max':
+                mul = DERs[feeder][der]["PVmul"]
+                newpv = newpv + f" kW={DERs[feeder][der][key]*mul}"
+
+        ############################## create dss elements #####################            
         if "CS" in DERs[feeder][der]["type"]:
-            Text.Command = f"New Load.{der}_CS Bus1={DERs[feeder][der]['node']} \
-                Phases={DERs[feeder][der]['phases']} kV={DERs[feeder][der]['kV']} \
-                kW={DERs[feeder][der]['kW_CS']} PF={DERs[feeder][der]['pf']}"
+            Text.Command = newcs
 
         if "PV" in DERs[feeder][der]["type"]:
-            Text.Command = f"New Load.{der}_PV Bus1={DERs[feeder][der]['node']}\
-                Phases={DERs[feeder][der]['phases']} kV={DERs[feeder][der]['kV']} \
-                kW={DERs[feeder][der]['kW_PV']} PF={DERs[feeder][der]['pf']}"
+            Text.Command = newpv
 
-        if "BESS" in DERs[feeder][der]["type"]:
-            Text.Command = f"New Load.{der}_BESS Bus1={DERs[feeder][der]['node']}\
-                Phases={DERs[feeder][der]['phases']} kV={DERs[feeder][der]['kV']} \
-                kW={DERs[feeder][der]['kW_BESS']} PF={DERs[feeder][der]['pf']}"
+        # if "BESS" in DERs[feeder][der]["type"]:
+        #     Text.Command = f"New Load.{der}_BESS Bus1={DERs[feeder][der]['node']}\
+        #         Phases={DERs[feeder][der]['phases']} kV={DERs[feeder][der]['kV']} \
+        #         kW={DERs[feeder][der]['kW_BESS']} PF={DERs[feeder][der]['pf']}"
 
     # Solve the system
     Text.Command = "Solve"

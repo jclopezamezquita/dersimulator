@@ -1,20 +1,19 @@
 {
-    "DER01_PV": {
-        "name" : "PV_teste",
-        "Bus1" : "n4",
+    "DER01_CS": {
+        "name" : "Charging_Station",
+        "Bus1" : "n3",
         "feeder" : "4Bus",
-        "type" : "PV",
-        "phases" : 3,
-        "kV" : 0.22,
-        "kW_CS_max" : 0,
-        "kW_PV_max" : 10,
+        "type" : "CS",
+        "Phases" : 3,
+        "kV" : 4.16,
+        "kW_CS_max" : 15,
+        "kW_PV_max" : 0,
         "kW_BESS_max" : 0,
         "kWh_BESS_max" : 0,
         "pf" : 1,
-        "conn" : "delta",
-        "DailyCurve" : "bge_pv",
-        "inteligence" : "supervision",
-        "LoadNameOpenDSS" : "geracao_pv_gmu",
-        "CS_outputs" : 0
+        "DailyCurve" : null,
+        "inteligence" : "control",
+        "LoadNameOpenDSS" : null,
+        "CS_outputs" : 1
     }
 }

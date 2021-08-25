@@ -1,11 +1,11 @@
 {
     "DSS": {
 
-        "PATH" : "/PATHTO/dersimulator/examples/ex1",
+        "PATH" : "examples/ex1",
         "feeders" : ["4Bus"],
         "Loads file name" : "Loads.json",
         "PVs file name" : "None",
-        "Loads curves": "/PATHTO/dersimulator/examples/ex1/load_curves.json",
+        "Loads curves": "examples/ex1/load_curves.json",
         "PVs curves": "None"
     },
     "Simulation": {
@@ -16,11 +16,11 @@
         "Samples": 96
     },
     "DERs":{
-        "Scenario" : "None",
-        "Operation": "None"
+        "Scenario" : "examples/ex1/scenario.json",
+        "Operation": "examples/ex1/DERs_operation.json"
     },
     "Results":{
-        "Bus": "/PATHTO/dersimulator/examples/ex1/data.json",
-        "Elements": "/PATHTO/dersimulator/examples/ex1/data.json"
+        "Bus": "examples/ex1/data.json",
+        "Elements": "examples/ex1/data.json"
     }
 }

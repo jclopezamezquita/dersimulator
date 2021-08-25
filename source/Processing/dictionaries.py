@@ -51,7 +51,9 @@ def get_ders_elements(PVs, DERs):
                         PVs[feeder][device].update({"mul": 1})
                     else:
                         DERs[feeder].update({device: DEVICES[device]})
-                        DERs[feeder][device].update({"mul": 1})
+                        DERs[feeder][device].update({"CSmul": 1})
+                        DERs[feeder][device].update({"PVmul": 1})
+                        DERs[feeder][device].update({"BESSmul": 1})
         if config["DSS"]["PVs file name"] != "None":
             file = config["DSS"]["PVs file name"]
             path = f'{config["DSS"]["PATH"]}/{feeder}'
