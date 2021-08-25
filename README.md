@@ -36,10 +36,10 @@ _In Construction_
 | ------ | ------ |
 | PATH | string with the path to the folder containing the feeders. |
 | feeders | a list with the names of the folders containing the feeders' data. |
-| Loads file name | <p>string with the names of the json files that contain the circuit load data. For each feeder folder, you must have the same file name.</p> |
-| PVs file name | <p>string with the names of the json files that contain the circuit generation data. For each feeder folder, you must have the same file name.</p>  |
-| Load curves | string containing the path to the json file with the demand multiplier curves for time-series analysis. The same file should be used for all loads of all feeders. |
-| PV curves | string containing the path to the json file with the generation multiplier curves for time-series analysis. The same file should be used for all loads of all feeders. |
+| Loads file name | <p>string with the names of the json files that contain the circuit load data. For each feeder folder, you must have the same file name. "None" if there is no file</p> |
+| PVs file name | <p>string with the names of the json files that contain the circuit generation data. For each feeder folder, you must have the same file name. "None" if there is no file</p>  |
+| Load curves | <p>string containing the path to the json file with the demand multiplier curves for time-series analysis. The same file should be used for all loads of all feeders. "None" if there is no file. </p>|
+| PV curves | <p>string containing the path to the json file with the generation multiplier curves for time-series analysis. The same file should be used for all loads of all feeders. "None" if there is no file. </p>|
 
 **Table 2:** Configuration dictionary for the _Simulation_ key
 | key | key values |
@@ -50,12 +50,30 @@ _In Construction_
 | Time step | <p> Simulation time step in minutes. </p> |
 | Samples | <p> Total number of samples. </p> | 
 
-**Table 3:** Configuration
+**Table 3:** Configuration dictionary for the _DERs_ key
 
-**Table 4:**
+| key | key values |
+| ------ | ------ |
+| Scenario | <p>String containing the path to the json file with the data for all the DERs. "None" if there is no file.                                  </p> |
+| Operation | <p>String containing the path to the json file with the DER operation. "None" if there is no file.                                  </p> |
 
+**Table 4:** Configuration dictionary for the _Results_ key
+
+| key | key values |
+| ------ | ------ |
+| Scenario | <p>String with the path to the json file containing the nodes and elements that should appear in the output file. Enter "All" to display all. Note: Although they are separate, the json file must be the same for the nodes and elements.</p>|
+| Operation | <p>String with the path to the json file containing the elements and elements that should appear in the output file. Enter "All" to display all. Note: Although they are separate, the json file must be the same for the nodes and elements.</p>|
+
+### Input Files
 
 ![alt-text](doc/Input.png)
+
+**Figure 2:** Suggested folders and files organization for simulation
+
+
+## Examples
+
+
 
 
 ## References
