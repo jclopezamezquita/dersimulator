@@ -10,7 +10,7 @@ The DERs that can be simulated in the program are:
 - Photovoltaic Systems (PS);
 - Battery Energy Store System (BESS);
 
-The load flow is run through the [dss-python](https://pypi.org/project/dss-python/) library .
+The load flow is run through the [dss-python](https://pypi.org/project/dss-python/) library <a href="#ref1">[1]</a>.
 
 ## Architecture
 
@@ -18,16 +18,15 @@ The load flow is run through the [dss-python](https://pypi.org/project/dss-pytho
 
 **Figure 1:** DERSimulator Architecture
 
-
 ## Installation
 
 _In Construction_
 
 ## Simulation Guide
 
-<p>To perform the simulations you need to edit the json file `config.json` and the folder with the distribution network data and the existing DERs.</p>
+<p>To perform the simulations you need to edit the json file `config.json`, the folder with the distribution network data and the existing DERs.</p>
 
-<p>The configuration file is in json format and has the following main keys: _DSS_, _Simulation_, _DERs_ and _Results_. For each of these keys there is a dictionary with the parameters needed to perform different simulations.</p>
+The configuration file is in json format and has the following main keys: _DSS_ , _Simulation_ , _DERs_ and _Results_. For each of these keys there is a dictionary with the parameters needed to perform different simulations.
 
 ### Contents of the file config.json
 
@@ -66,35 +65,45 @@ _In Construction_
 
 ### Input Files
 
+Fig. 2 shows an example of input file organization. It is suggested that the files be in the same folder as shown in the figure.
+
+The directories _feeder 1_ to _feeder n_ contain the DSS files of the network and json files of the PV loads and generations.
+
 ![alt-text](doc/Input.png)
 
 **Figure 2:** Suggested folders and files organization for simulation
 
+In the `config.json` file you must pass the paths to the json files, if needed. These files have the following functions:
+
+* `data.json`: Contains the elements to obtain the values of the physical quantities.
+
+* `load_curves.json`: Contains the load curves for the load file;
+
+* `generation_curves.json`: Contains the generation curves for the generation file;
+
+* `scenario.json`: Contains the DERs data;
+
+* `DERs_operation.json`: Contains the operation DERs state at each time step.
 
 ## Examples
 
-The examples are downloaded with the repository. Details are at the following links:
+The examples are downloaded with the repository and using IEEE test cases <a href="#ref1">[2]</a>. Details are at the following links:
 
-[Example 1](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex1): Snapshot simulation of the IEEE 4-bar network;
+[Example 1](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex1): Snapshot simulation of the IEEE 4-bus network;
 
-[Example 2](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex2): 96-sample time-series simulation of IEEE 4-bar network;
+[Example 2](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex2): 96-sample time-series simulation of IEEE 4-bus network;
 
-[Example 3](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex3): 96-sample time-series simulation of the 4-bar IEEE grid with photovoltaic generation;
+[Example 3](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex3): 96-sample time-series simulation of the 4-bus IEEE grid with photovoltaic generation;
 
-[Example 4](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex4): 96-sample time-series simulation of the IEEE 4-bar network with charging station;
+[Example 4](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex4): 96-sample time-series simulation of the IEEE 4-bus network with charging station;
 
 
 ## References
 
-[1] dss-python. Available at https://pypi.org/project/dss-python 
+<a name="ref1">[1]</a> dss-python. Available at https://pypi.org/project/dss-python 
 
-[2] IEEE test cases. Available at https://github.com/tshort/OpenDSS/tree/master/Distrib/IEEETestCases 
+<a name="ref2">[2]</a> IEEE test cases. Available at https://github.com/tshort/OpenDSS/tree/master/Distrib/IEEETestCases 
 
 ## Observations: 
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/wanicon" title="wanicon">wanicon</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-
-
-
-
-## Running the simulations
