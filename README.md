@@ -73,11 +73,22 @@ _In Construction_
 
 ## Examples
 
+The examples are downloaded with the repository. Details are at the following links:
 
+[Example 1](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex1): Snapshot simulation of the IEEE 4-bar network;
+
+[Example 2](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex2): 96-sample time-series simulation of IEEE 4-bar network;
+
+[Example 3](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex3): 96-sample time-series simulation of the 4-bar IEEE grid with photovoltaic generation;
+
+[Example 4](https://gitlab.com/smart-grids-tools/dersimulator/-/tree/main/examples/ex4): 96-sample time-series simulation of the IEEE 4-bar network with charging station;
 
 
 ## References
 
+[1] dss-python. Available at https://pypi.org/project/dss-python 
+
+[2] IEEE test cases. Available at https://github.com/tshort/OpenDSS/tree/master/Distrib/IEEETestCases 
 
 ## Observations: 
 
