@@ -1,0 +1,13 @@
+{
+	"geracao_pv_gmu" : { 
+		"Bus1" : "n3",
+		"phases" : 3,
+		"kV" : 4.16,
+		"kW" : -500.0,
+		"pf" : 1,
+		"Conn" : "delta",
+		"Model" : 1,
+		"Enabled": "yes",
+		"DailyCurve" : "pv1"
+	}
+}
