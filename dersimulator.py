@@ -1,7 +1,8 @@
 from source.Processing import dictionaries
-from source import simulation
+from source.Tools import plot
 from datetime import datetime
 from dateutil import parser
+from source import simulation
 import shutil
 import json
 import sys
@@ -74,6 +75,8 @@ elif config["Simulation"]["Type"] == "time-series":
             bus["time-step"].append(date.isoformat())
             elements["time-step"].append(date.isoformat())
         simulation.save_jsonfiles(feeder, bus, elements)
+        plot.result_bus(config, date, feeder)
+        plot.result_elements(config, date, feeder)
 
 else:
     print("This type of simulation is not supported")

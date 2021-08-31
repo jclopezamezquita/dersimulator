@@ -44,7 +44,7 @@ def run(feeder, LOADs, PVs, DERs):
         for key in PVs[feeder][pv]:
             if key in LIST["PVs"]:
                 if key == "kW":
-                    mul = LOADs[feeder][load]["mul"]
+                    mul = PVs[feeder][pv]["mul"]
                     newpv = newpv + f" {key}={PVs[feeder][pv][key]*mul}"
                 else:
                     newpv = newpv + f" {key}={PVs[feeder][pv][key]}"
@@ -54,16 +54,19 @@ def run(feeder, LOADs, PVs, DERs):
         newcs = f"new load.{der}_CS"
         newpv = f"new load.{der}_PV"
         newbess = f"new load.{der}_BESS"
+        newv2g = f"new load.{der}_V2G"
         for key in DERs[feeder][der]:
             ############################## General keys ########################
             if key in LIST["Load"]:
                 newcs = newcs + f" {key}={DERs[feeder][der][key]}"
+                newv2g = newv2g + f" {key}={DERs[feeder][der][key]}"
             if key in LIST["PVs"]:
                 newpv = newpv + f" {key}={DERs[feeder][der][key]}"
             ############################## specific keys #######################
             if key == "kW_CS_max":
                 mul = DERs[feeder][der]["CSmul"]
                 newcs = newcs + f" kW={DERs[feeder][der][key]*mul}"
+                newv2g = newv2g + f" kW={DERs[feeder][der][key]*mul}"
             if key == "kW_PV_max":
                 mul = DERs[feeder][der]["PVmul"]
                 newpv = newpv + f" kW={DERs[feeder][der][key]*mul}"
@@ -72,8 +75,12 @@ def run(feeder, LOADs, PVs, DERs):
         if "CS" in DERs[feeder][der]["type"]:
             Text.Command = newcs
 
+        if "V2G" in DERs[feeder][der]["type"]:
+            Text.Command = newv2g
+
         if "PV" in DERs[feeder][der]["type"]:
             Text.Command = newpv
+            a = 1
 
         # if "BESS" in DERs[feeder][der]["type"]:
         #     Text.Command = f"New Load.{der}_BESS Bus1={DERs[feeder][der]['node']}\
