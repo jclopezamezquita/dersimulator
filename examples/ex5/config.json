@@ -20,7 +20,7 @@
         "Operation": "examples/ex5/DERs_operation.json"
     },
     "Results":{
-        "Bus": "examples/ex5/data.json",
-        "Elements": "examples/ex5/data.json"
+        "Bus": "All",
+        "Elements": "All"
     }
 }
